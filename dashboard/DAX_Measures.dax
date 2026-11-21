@@ -1,0 +1,84 @@
+// =============================================================================
+// Project: E-Commerce Sales, Pricing & Profitability Analysis
+// File:    DAX_Measures.dax
+// Purpose: Production-Ready DAX Measures for Microsoft Power BI
+// =============================================================================
+
+// -----------------------------------------------------------------------------
+// 1. Total Sales (Revenue)
+// Format: Currency ($#,##0.00)
+// Expected Benchmark: $2,297,200.65
+// -----------------------------------------------------------------------------
+Total Sales = 
+SUM(superstore_orders[sales])
+
+
+// -----------------------------------------------------------------------------
+// 2. Total Profit
+// Format: Currency ($#,##0.00)
+// Expected Benchmark: $286,396.54
+// -----------------------------------------------------------------------------
+Total Profit = 
+SUM(superstore_orders[profit])
+
+
+// -----------------------------------------------------------------------------
+// 3. Profit Margin %
+// Format: Percentage (0.00%)
+// Expected Benchmark: 12.47%
+// -----------------------------------------------------------------------------
+Profit Margin % = 
+DIVIDE(
+    [Total Profit],
+    [Total Sales],
+    0
+)
+
+
+// -----------------------------------------------------------------------------
+// 4. Total Orders
+// Format: Whole Number (#,##0)
+// Expected Benchmark: 5,009
+// -----------------------------------------------------------------------------
+Total Orders = 
+DISTINCTCOUNT(superstore_orders[order_id])
+
+
+// -----------------------------------------------------------------------------
+// 5. Average Order Value (AOV)
+// Format: Currency ($#,##0.00)
+// Expected Benchmark: $458.61
+// -----------------------------------------------------------------------------
+Average Order Value = 
+DIVIDE(
+    [Total Sales],
+    [Total Orders],
+    0
+)
+
+
+// -----------------------------------------------------------------------------
+// BONUS OPERATIONAL & PRICING MEASURES
+// -----------------------------------------------------------------------------
+Total Units Sold = 
+SUM(superstore_orders[quantity])
+
+Average Shipping Days = 
+AVERAGE(superstore_orders[shipping_duration_days])
+
+Average Discount % = 
+AVERAGE(superstore_orders[discount])
+
+
+// -----------------------------------------------------------------------------
+// CALCULATED COLUMN: Discount Tier (Automates grouping on visuals)
+// Click 'New Column' in superstore_orders and paste:
+// -----------------------------------------------------------------------------
+Discount Tier = 
+SWITCH(
+    TRUE(),
+    superstore_orders[discount] = 0, "0% (No Discount)",
+    superstore_orders[discount] <= 0.20, "1% - 20% (Low)",
+    superstore_orders[discount] <= 0.50, "21% - 50% (Moderate)",
+    "> 50% (Heavy)"
+)

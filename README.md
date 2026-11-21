@@ -20,15 +20,21 @@ This project investigates and models an e-commerce business using transactional 
 - **Python (3.13+)**: Scripting and workflow automation.
 - **Pandas**: High-performance data ingestion, cleaning, date manipulation, and tabular transformations.
 - **NumPy**: Vectorized numerical calculations and handling numeric anomalies.
-- **PostgreSQL 18**: Relational database storage, schema constraints, and data integrity.
+- **PostgreSQL 18**: Enterprise relational database storage, schema constraints, and data integrity.
 - **SQL**: Analytical data modeling, aggregate metrics (MoM growth, AOV, profit margins), and business logic.
-- **Microsoft Power BI**: Interactive business intelligence dashboard, data modeling, and DAX measures.
+- **Microsoft Power BI**: Executive business intelligence dashboard, DAX measures, and interactive reporting.
 
 ---
 
 ## 📁 Repository Structure
 ```text
 E-commerce-Sales-Pricing-Profitability-Analysis/
+│
+├── dashboard/              # Power BI reports, DAX definitions, and themes
+│   ├── DAX_Measures.dax    # Production-ready DAX measures & calculated columns
+│   ├── Executive_Theme.json # Corporate visual theme palette
+│   ├── PowerBI_Setup_Guide.md # Step-by-step setup and visualization guide
+│   └── ecommerce_analytics_dashboard.pbix # Interactive Power BI Dashboard
 │
 ├── data/
 │   ├── raw/                # Original, unmodified datasets (excluded from Git)
@@ -42,9 +48,6 @@ E-commerce-Sales-Pricing-Profitability-Analysis/
 │   ├── 01_schema.sql       # Database schema and table constraints (DDL)
 │   └── 02_analysis.sql     # 7 Core business KPI queries and analytical views
 │
-├── power_bi/               # Power BI project files (.pbix) and report assets
-│   └── .gitkeep
-│
 ├── .env.example            # Environment variable template for database credentials
 ├── .gitignore              # Specifies intentionally untracked files
 ├── requirements.txt        # Python dependency manifest
@@ -53,7 +56,7 @@ E-commerce-Sales-Pricing-Profitability-Analysis/
 
 ---
 
-## 📊 Key Business Findings (Verified in PostgreSQL)
+## 📊 Key Business Findings (Reconciled in Python, SQL & Power BI)
 
 | Business Metric | Value | Analytical Finding |
 | :--- | :---: | :--- |
@@ -63,7 +66,7 @@ E-commerce-Sales-Pricing-Profitability-Analysis/
 | **Average Delivery Time** | **4.0 days** | Consistent fulfillment duration across all four regions. |
 
 ### Strategic Insights:
-1. **The 20% Discount Cliff:**
+1. **The 20% Discount Cliff (Pricing Danger Zone):**
    - Orders discounted at **0% - 20%** produce strong positive profit margins (+29.5% and +11.9%).
    - Orders discounted **> 20%** generate steep net losses (-19.7% margin for 21-50% discounts, and -119.2% margin for >50% discounts).
 2. **The Furniture Margin Squeeze:**
@@ -75,10 +78,20 @@ E-commerce-Sales-Pricing-Profitability-Analysis/
 
 ---
 
+## 📊 Power BI Executive Dashboard Architecture
+The Microsoft Power BI dashboard (`dashboard/ecommerce_analytics_dashboard.pbix`) connects directly to PostgreSQL 18 in **Import mode**, featuring:
+- **Executive KPI Cards**: Real-time display of Revenue ($2.30M), Net Profit ($286.40K), Margin % (12.47%), Orders (5,009), and AOV ($458.61).
+- **Monthly Sales & Profit Trend**: Dual-axis line and column chart revealing Q4 holiday spikes and MoM growth velocity.
+- **Category & Sub-Category Breakdown**: Bar chart enabling interactive drill-downs from Category to Sub-Category.
+- **Profit Impact by Discount Tier**: Visualizing the profit threshold across 4 distinct discount brackets.
+- **Interactive Multi-Slicers**: Dynamic cross-filtering by Date Range, Region, and Customer Segment.
+
+---
+
 ## 📈 Project Roadmap
 - [x] **Phase 0 & 1:** Project architecture, environment setup, and raw data inspection.
 - [x] **Phase 2:** Data cleaning & standardization pipeline (Pandas & NumPy).
 - [x] **Phase 3:** Relational database schema design & loading (PostgreSQL 18).
 - [x] **Phase 4:** Advanced SQL business metrics and KPI calculations (`sql/02_analysis.sql`).
-- [ ] **Phase 5:** Microsoft Power BI dashboard development.
-- [ ] **Phase 6:** Project validation and final documentation.
+- [x] **Phase 5:** Microsoft Power BI dashboard development (`dashboard/ecommerce_analytics_dashboard.pbix`).
+- [x] **Phase 6:** End-to-end data reconciliation, verification, and documentation.
