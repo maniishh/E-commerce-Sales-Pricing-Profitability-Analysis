@@ -1,0 +1,2 @@
+-- SQL Scripts: Schema Definitions (DDL)
+-- This file will contain CREATE TABLE, ALTER TABLE, and constraint statements.

@@ -1,0 +1,2 @@
+-- SQL Scripts: Business Metrics & Analytics
+-- This file will contain analytical SQL queries (Revenue, Average Order Value, Customer Retention, etc.).

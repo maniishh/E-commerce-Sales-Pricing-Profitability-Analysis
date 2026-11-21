@@ -1,0 +1,3 @@
+# Raw Data Directory
+Store original, unmodified data files here (e.g., CSV, Excel).
+Never edit files directly inside this folder.

@@ -1,0 +1,57 @@
+# ==========================================
+# Python Virtual Environments
+# ==========================================
+.venv/
+venv/
+ENV/
+env/
+*.venv
+
+# ==========================================
+# Byte-compiled / optimized / cache files
+# ==========================================
+__pycache__/
+*.py[cod]
+*$py.class
+*.pyd
+.Python
+
+# ==========================================
+# Environment variables and secrets
+# ==========================================
+.env
+.env.local
+.env.*.local
+*.pem
+*.key
+
+# ==========================================
+# Datasets & Large Files (Raw Data)
+# ==========================================
+# Exclude raw dataset files from version control
+data/raw/*.csv
+data/raw/*.xlsx
+data/raw/*.xls
+data/raw/*.zip
+data/raw/*.json
+data/processed/*.csv
+data/processed/*.xlsx
+
+# Ensure Git tracks the data folders using .gitkeep
+!data/raw/.gitkeep
+!data/processed/.gitkeep
+
+# ==========================================
+# Power BI and Office Temporary Files
+# ==========================================
+*.tmp
+~$*
+*.pbix.temp
+
+# ==========================================
+# Operating System & IDE Files
+# ==========================================
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
