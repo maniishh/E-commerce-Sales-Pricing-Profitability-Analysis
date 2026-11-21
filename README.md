@@ -20,7 +20,7 @@ This project investigates and models an e-commerce business using transactional 
 - **Python (3.13+)**: Scripting and workflow automation.
 - **Pandas**: High-performance data ingestion, cleaning, date manipulation, and tabular transformations.
 - **NumPy**: Vectorized numerical calculations and handling numeric anomalies.
-- **PostgreSQL**: Relational database storage, schema constraints, and data integrity.
+- **PostgreSQL 18**: Relational database storage, schema constraints, and data integrity.
 - **SQL**: Analytical data modeling, aggregate metrics (MoM growth, AOV, profit margins), and business logic.
 - **Microsoft Power BI**: Interactive business intelligence dashboard, data modeling, and DAX measures.
 
@@ -34,16 +34,18 @@ E-commerce-Sales-Pricing-Profitability-Analysis/
 │   ├── raw/                # Original, unmodified datasets (excluded from Git)
 │   └── processed/          # Cleaned, standardized datasets (excluded from Git)
 │
-├── scripts/                # Python data extraction, cleaning, and ETL scripts
-│   └── .gitkeep
+├── src/                    # Python data extraction, cleaning, and ETL scripts
+│   ├── 02_clean_data.py    # Data cleaning and standardization pipeline
+│   └── 03_load_to_postgres.py # Automated PostgreSQL schema creation & loader
 │
 ├── sql/                    # SQL scripts for database modeling and analysis
 │   ├── 01_schema.sql       # Database schema and table constraints (DDL)
-│   └── 02_analysis.sql     # Business KPI queries and analytical views
+│   └── 02_analysis.sql     # 7 Core business KPI queries and analytical views
 │
 ├── power_bi/               # Power BI project files (.pbix) and report assets
 │   └── .gitkeep
 │
+├── .env.example            # Environment variable template for database credentials
 ├── .gitignore              # Specifies intentionally untracked files
 ├── requirements.txt        # Python dependency manifest
 └── README.md               # Project documentation and guide
@@ -51,50 +53,32 @@ E-commerce-Sales-Pricing-Profitability-Analysis/
 
 ---
 
-## 📊 Dataset Information & Download Instructions
-This project uses the standard **Sample Superstore** e-commerce dataset (historical transactional records covering order fulfillment, products, customer segments, sales, discounts, and profits).
+## 📊 Key Business Findings (Verified in PostgreSQL)
 
-- **Source:** [Kaggle Superstore Dataset](https://www.kaggle.com/datasets/vivek468/superstore-dataset-final)
-- **File Name:** `Sample - Superstore.csv`
-- **Rows:** 9,994 line items
-- **Columns:** 21 features
+| Business Metric | Value | Analytical Finding |
+| :--- | :---: | :--- |
+| **Total Gross Revenue** | **$2,297,200.65** | 5,009 unique checkout orders across 793 customers. |
+| **Total Net Profit** | **$286,396.54** | Overall net profit margin of **12.47%**. |
+| **Average Order Value (AOV)** | **$458.61** | Healthy basket size across 9,994 line items. |
+| **Average Delivery Time** | **4.0 days** | Consistent fulfillment duration across all four regions. |
 
-### How to set up the dataset locally:
-1. Download `Sample - Superstore.csv` from the Kaggle link above.
-2. Place the file inside the local directory:
-   ```text
-   data/raw/Sample - Superstore.csv
-   ```
-*(Note: As defined in `.gitignore`, raw data files are kept locally and are not committed to GitHub to comply with licensing and repository size best practices).*
-
----
-
-## 🚀 Getting Started
-
-### 1. Clone the repository
-```bash
-git clone https://github.com/maniishh/E-commerce-Sales-Pricing-Profitability-Analysis.git
-cd E-commerce-Sales-Pricing-Profitability-Analysis
-```
-
-### 2. Set up the Python Virtual Environment
-On Windows (PowerShell):
-```powershell
-python -m venv .venv
-.\.venv\Scripts\Activate.ps1
-```
-
-### 3. Install Dependencies
-```bash
-pip install -r requirements.txt
-```
+### Strategic Insights:
+1. **The 20% Discount Cliff:**
+   - Orders discounted at **0% - 20%** produce strong positive profit margins (+29.5% and +11.9%).
+   - Orders discounted **> 20%** generate steep net losses (-19.7% margin for 21-50% discounts, and -119.2% margin for >50% discounts).
+2. **The Furniture Margin Squeeze:**
+   - **Technology** generates $836k revenue and **$145.5k profit** (17.4% margin).
+   - **Office Supplies** generates $719k revenue and **$122.5k profit** (17.0% margin).
+   - **Furniture** generates $742k revenue but only **$18.5k profit** (2.5% margin), dragged down heavily by the **Tables** sub-category.
+3. **Regional Profit Disparity:**
+   - **West** ($108.4k profit, 14.9% margin) and **East** ($91.5k profit, 13.5% margin) outperform **Central** ($39.7k profit, 7.9% margin).
 
 ---
 
 ## 📈 Project Roadmap
 - [x] **Phase 0 & 1:** Project architecture, environment setup, and raw data inspection.
-- [ ] **Phase 2:** Data cleaning & transformation pipeline (Pandas & NumPy).
-- [ ] **Phase 3:** Relational database schema design & loading (PostgreSQL).
-- [ ] **Phase 4:** Advanced SQL business metrics and KPI calculations.
+- [x] **Phase 2:** Data cleaning & standardization pipeline (Pandas & NumPy).
+- [x] **Phase 3:** Relational database schema design & loading (PostgreSQL 18).
+- [x] **Phase 4:** Advanced SQL business metrics and KPI calculations (`sql/02_analysis.sql`).
 - [ ] **Phase 5:** Microsoft Power BI dashboard development.
 - [ ] **Phase 6:** Project validation and final documentation.
