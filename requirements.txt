@@ -1,6 +1,7 @@
-# Core Data Analytics
+# Core Data Analytics & Visualization
 pandas>=2.2.0
 numpy>=1.26.0
+matplotlib>=3.8.0
 
 # Database Connectivity (Python to PostgreSQL)
 sqlalchemy>=2.0.0
