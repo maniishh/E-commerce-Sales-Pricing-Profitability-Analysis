@@ -87,11 +87,3 @@ The Microsoft Power BI dashboard (`dashboard/ecommerce_analytics_dashboard.pbix`
 - **Interactive Multi-Slicers**: Dynamic cross-filtering by Date Range, Region, and Customer Segment.
 
 ---
-
-## 📈 Project Roadmap
-- [x] **Phase 0 & 1:** Project architecture, environment setup, and raw data inspection.
-- [x] **Phase 2:** Data cleaning & standardization pipeline (Pandas & NumPy).
-- [x] **Phase 3:** Relational database schema design & loading (PostgreSQL 18).
-- [x] **Phase 4:** Advanced SQL business metrics and KPI calculations (`sql/02_analysis.sql`).
-- [x] **Phase 5:** Microsoft Power BI dashboard development (`dashboard/ecommerce_analytics_dashboard.pbix`).
-- [x] **Phase 6:** End-to-end data reconciliation, verification, and documentation.
